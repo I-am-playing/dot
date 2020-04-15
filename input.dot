@@ -1,0 +1,59 @@
+digraph classes {
+	rankdir=BT
+	node[shape=record]
+
+	subgraph cluster_syscalls
+	{
+		label = "System Calls";
+		open
+		close
+		read
+		write
+		ioctl
+	}
+
+	subgraph cluster_stdclib
+	{
+		label = "C Stanard library";
+		newlib
+	}
+
+	subgraph cluster_filesystem
+	{
+		label = "File System";
+		fatFs
+	}
+
+	subgraph cluster_rtos
+	{
+		label = "RTOS";
+		sched_lock
+		sched_unlock
+		OS_task_create
+		OS_task_kill
+		OS_delay_ms
+	}
+
+	subgraph cluster_ll_driver
+	{
+		label = "LL Driver";
+		dioDriver
+		uartDriver
+		spiDriver
+		i2cDriver
+	}
+
+	subgraph cluster_hal
+	{
+		label ="HAL";
+		gpio -> dioDriver
+		uart -> uartDriver
+		i2c -> i2cDriver
+		spi -> spiDriver
+		timer
+		adc
+		memory
+	}
+
+
+}
